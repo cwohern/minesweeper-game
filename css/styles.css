@@ -1,0 +1,87 @@
+img {
+    width: 30px;
+    height: 30px;
+    margin: 5px auto;
+}
+h1 {
+    display: inline-block;
+    padding: 10px 5px 3px 3px;
+    font: bold 12px "lucida grande";
+}
+h1:hover {
+    background-color: rgb(171, 171, 245) ;
+}
+h2 {
+    display: inline-block;
+    margin: 10px;
+    color: red;
+    font: bold 17px "courier";
+}
+table {
+    text-align: left;
+    vertical-align: baseline;
+    font: bold 10px "lucida grande";
+    width: 100%;
+    margin: 5px 5px 0 5px;
+}
+input {
+    width: 30px;
+    height: 10px;
+    font: bold 10px "lucida grande";
+}
+th {
+    height: 22px;
+}
+button{
+    font: bold 12px "lucida grande";
+    margin: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+button:hover {
+    background: rgb(171, 171, 245); 
+}
+.minesweeper {
+    margin: 10px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+.menu {
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    background: rgb(203, 203, 200);
+}
+.game-header {
+    display:flex;
+    border: 1px solid black;
+    background: rgb(203, 203, 200);
+}
+.game-board {
+    background: rgb(218, 220, 217);
+    display: flex;
+    flex-wrap: wrap;
+    border-right: 1px solid black;
+}
+.tile {
+    font: bold 13px "lucida grande";
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.game-dropdown {
+    display: flex;
+    flex-wrap: wrap;
+    background: lightgray;
+    width: 250px;
+    margin: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+}

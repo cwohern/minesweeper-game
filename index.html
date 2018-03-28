@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>minesweeper</title>
+    <link href="css/css-reset.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <main>
+        <h1 class="win-lose"></h1>
+        <div class="game-dropdown-content">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>height:</th>
+                    <th>width:</th>
+                    <th>mines:</th>
+                </tr>
+                <tr>
+                        <th class="select easy"><input class="select easy" type="radio" checked="checked" value="easy">Easy:</th>
+                        <th>9</th>
+                        <th>9</th>
+                        <th>10</th>
+                </tr>
+                <tr>
+                        <th class="select medium"><input class="select medium" type="radio" value="medium">Medium:</th>
+                        <th>16</th>
+                        <th>16</th>
+                        <th>40</th>
+                </tr>
+                <tr>
+                        <th class="select hard"><input class="select hard"type="radio" value="hard">Hard:</th>
+                        <th>16</th>
+                        <th>30</th>
+                        <th>99</th>
+                </tr>
+                <tr>
+                        <th class="select custom"><input class="select custom" type="radio" value="custom">Custom:</th>
+                        <th><input class="height"></th>
+                        <th><input class="width"></th>
+                        <th><input class="mines"></th>
+                </tr>
+            </table>
+            <button class="new-game">New Game</button>
+        </div>
+        <div class="minesweeper">
+            <div class="menu">
+                <h1 class="menu-button">Game</h1>
+                <h1 class="menu-button">Settings</h1>
+                <h1 class="menu-button">Help</h1>
+            </div>
+            <div class="game-header">
+                <h2 class="mine-counter"></h2>
+                <img alt="smiley face stand-in" src="images/smiley.png">
+                <h2 class="timer">00:00:00</h2>
+            </div>
+            <div class="game-board">
+            </div>
+        </div>    
+    </main>
+</body>
+<script async defer src="js/main.js"></script>
+</html>
