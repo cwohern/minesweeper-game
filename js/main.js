@@ -96,6 +96,7 @@ function startReStart() {
     render();
 }
 
+//Functions that set up the minesweeper board:
 function tileMaker() {
     for (var r = 0; r < height; r++) {
         for ( var c = 0; c < width; c++){
@@ -146,7 +147,7 @@ function boardMaker() {
 //Event listeners:
 gameBoard.addEventListener("click", e => {
     var tile = tilesArray[parseInt(e.target.id.slice(2))];
-    if (e.target.className === "game-board" || tile.visible === "visible"){
+    if (e.target.className === "game-board" || tile.visible === "visible" || winLose !== null){
         return;
     } else {
         tile.reveal();
@@ -249,10 +250,13 @@ function render() {
 
     var difficultyArray = ["easy", "medium", "hard", "custom"]
     for (i = 0; i < difficultyArray.length; i++) {
+        var submenu = `${difficultyArray[i]}-submenu`;
         if (difficulty === difficultyArray[i]) {
             document.getElementById(difficultyArray[i]).checked = true;
+            document.getElementById(submenu).style.display = "block";
         } else {
             document.getElementById(difficultyArray[i]).checked = false;
+            document.getElementById(submenu).style.display = "none";
         }
     }
     
