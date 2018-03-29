@@ -27,50 +27,29 @@ class Tile {
         var dnLft = [r+1, c-1];
         var dnMid = [r+1, c];
         var dnRgt = [r+1, c+1];
-        /*
-        var adjacentArray = [upLft, upMid, upRgt, lft, rgt, dnLft, dnMid, dnRgt];
-        
+        var resultArray = [upLft, upMid, upRgt, lft, rgt, dnLft, dnMid, dnRgt];
+
         if (r === 0) {
-            adjacentArray = adjacentArray.filter(e => {
-                e !== upLft && e !== upMid && e!== upRgt;
+            resultArray = resultArray.filter(e => {
+                return e !== upLft && e !== upMid && e !== upRgt;
             })
         }
         if (r === height - 1) {
-            adjacentArray = adjacentArray.filter(e => {
-                e !== dnLft && e !== dnMid && e !== dnRgt;
+            resultArray = resultArray.filter(e => {
+                return e !== dnLft && e !== dnMid && e !== dnRgt;
             })
         }
         if (c === 0) {
-            adjacentArray = adjacentArray.filter(e => {
-                e !== upLft && e !== lft && e !== dnLft;
+            resultArray = resultArray.filter(e => {
+                return e !== upLft && e !== lft && e !== dnLft;
             })
         }
         if (c === width - 1) {
-            adjacentArray = adjacentArray.filter(e => {
-                e !== upRgt && e !== rgt && e!== dnRgt;
+            resultArray = resultArray.filter(e => {
+                return e !== upRgt && e !== rgt && e!== dnRgt;
             })
         }
-        return adjacentArray;
-        */
-        if (r === 0 && c === 0) {
-            return [rgt, dnMid, dnRgt];
-        } else if (r === 0 && c !== width - 1) {
-            return [lft, rgt, dnLft, dnMid, dnRgt];
-        } else if (r === 0 && c === width - 1) {
-            return [lft, dnLft, dnMid];
-        } else if (r !== height - 1 && c === 0) {
-            return [upMid, upRgt, rgt, dnMid, dnRgt];
-        } else if (r === height - 1 && c === 0) {
-            return [upMid, upRgt, rgt];
-        } else if (r === height - 1 && c !== width - 1) {
-            return [upLft, upMid, upRgt, lft, rgt];
-        } else if (r === height - 1 && c === width - 1) {
-            return [upLft, upMid, lft];
-        } else if (r !== height - 1 && c === width - 1) {
-            return [upLft, upMid, lft, dnLft, dnMid];
-        } else {
-            return [upLft, upMid, upRgt, rgt, lft, dnLft, dnMid, dnRgt];
-        }
+        return resultArray;
     }
     containsFinder() {
         var adjacentMinesCount = 0;
@@ -295,7 +274,7 @@ function render() {
             thisTile.style.background = "url('images/tile.png') no-repeat left top";
             thisTile.style.backgroundSize = "contain";
         } else {
-            thisTile.style.background ="";
+            thisTile.style.background = "";
             if (tilesArray[i].contains === "mine"){
                 thisTile.style.background = "url('images/mine.png') no-repeat left top";
                 thisTile.style.backgroundSize = "contain";
@@ -304,7 +283,6 @@ function render() {
             } else {
                 thisTile.innerHTML = tilesArray[i].contains;
                 thisTile.style.padding = "2px 0 0 5px";
-
                 var colorsArray = ["rgb(6, 27, 236)", "rgb(3, 127, 0)", "rgb(255, 0, 0)", "rgb(234, 176, 0)", "rgb(181, 60, 251)", "rgb(255, 0, 186)", "rgb(0, 0, 0)", "rgb(255, 255, 255)"];
                 thisTile.style.color = colorsArray[tilesArray[i].contains - 1];
             }
