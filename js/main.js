@@ -1,3 +1,15 @@
+var height = 9;
+var width = 9;
+var mines = 10;
+var tilesArray = [];
+var winLose = null;
+var difficulty = "easy";
+var time = 0;
+var clock = null;
+
+var gameBoard = document.querySelector(".game-board");
+
+//Functions and event listeners:
 class Tile {
     constructor (row, col) {
         this.position = [row, col];
@@ -15,7 +27,31 @@ class Tile {
         var dnLft = [r+1, c-1];
         var dnMid = [r+1, c];
         var dnRgt = [r+1, c+1];
-
+        /*
+        var adjacentArray = [upLft, upMid, upRgt, lft, rgt, dnLft, dnMid, dnRgt];
+        
+        if (r === 0) {
+            adjacentArray = adjacentArray.filter(e => {
+                e !== upLft && e !== upMid && e!== upRgt;
+            })
+        }
+        if (r === height - 1) {
+            adjacentArray = adjacentArray.filter(e => {
+                e !== dnLft && e !== dnMid && e !== dnRgt;
+            })
+        }
+        if (c === 0) {
+            adjacentArray = adjacentArray.filter(e => {
+                e !== upLft && e !== lft && e !== dnLft;
+            })
+        }
+        if (c === width - 1) {
+            adjacentArray = adjacentArray.filter(e => {
+                e !== upRgt && e !== rgt && e!== dnRgt;
+            })
+        }
+        return adjacentArray;
+        */
         if (r === 0 && c === 0) {
             return [rgt, dnMid, dnRgt];
         } else if (r === 0 && c !== width - 1) {
@@ -55,7 +91,6 @@ class Tile {
             for (var i = 0; i < tilesArray.length; i++) {
                 if (tilesArray[i].contains === "mine") {
                     tilesArray[i].visible = "visible";
-                //or you could try making minesToPush a universal variable and iterating through that
                 }
             }
         } else if (this.contains === 0 && this.visible === "hidden") {
@@ -68,12 +103,19 @@ class Tile {
         }
     }
 }
-
-var height = 16;
-var width = 30;
-var mines = 99;
-var tilesArray = [];
-var winLose = null;
+startReStart();
+function startReStart() {
+    winLose = null;
+    tilesArray = [];
+    while (gameBoard.firstChild) {
+        gameBoard.removeChild(gameBoard.firstChild);
+    }
+    tileMaker();
+    minePlacer();
+    boardMaker();
+    timer("set");
+    render();
+}
 
 function tileMaker() {
     for (var r = 0; r < height; r++) {
@@ -108,6 +150,7 @@ function minePlacer() {
     for (var i = 0; i < tilesArray.length; i++) {
         tilesArray[i].containsFinder();
     }
+    minesToPush = [];
 }
 
 function boardMaker() {
@@ -121,155 +164,56 @@ function boardMaker() {
     }
 }
 
-var settings = "easy";
-document.querySelector(".game-dropdown-content").addEventListener("click", function(e) {
-    var easyRadio = document.getElementById("easy");
-    var mediumRadio = document.getElementById("medium");
-    var hardRadio = document.getElementById("hard");
-    var customRadio = document.getElementById("custom");
-    if (e.target.className !== "easy" || "medium" || "hard" || "custom") {
+//Event listeners:
+gameBoard.addEventListener("click", e => {
+    var tile = tilesArray[parseInt(e.target.id.slice(2))];
+    if (e.target.className === "game-board" || tile.visible === "visible"){
         return;
-    } else if () {
-        settings = "empty";
-        e.target.clicked = "";
-    } else if (e.target.className === "easy") {
-        settings = "easy";
-        medium.clicked = "";
-        hard.clicked = "";
-        custom.clicked = "";
-    } else if (e.target.className === "medium") {
-        settings = "medium";
-        easy.clicked = "";
-        hard.clicked = "";
-        custom.clicked = "";
-    } else if (e.target.className === "hard") {
-        settings = "hard";
-        easy.clicked = "";
-        medium.clicked = "";
-        custom.clicked = "";
-    } else if (e.target.className === "custom") {
-        settings = "custom";
-        easy.clicked = "";
-        medium.clicked = "";
-        hard.clicked = "";
+    } else {
+        tile.reveal();
+    }
+    timer("on");
+    checkForWin();
+    console.log(winLose);
+    if (winLose !== null) timer("off");
+    render();
+})
+
+document.querySelector(".game-dropdown-content").addEventListener("click", e => {
+    if (e.target.className === "new-game") {
+        newGame(); 
+    } else {
+        difficulty = e.target.className;
+        render();
     }
 })
-/*
-document.querySelector(".new-game").addEventListener("click", newGame)
+
+//Event listener functions:
 function newGame() {
-    winlose = null;
-    tilesArray = [];
-    // and whatever else (timer?)
-    if (settings === "empty") {
-        display a message "pick a difficulty!"
-    }else if (settings === "easy") {
-        height = 9;
-        width = 9;
-        mines = 10;
-    } else if (settings === "medium") {
-        height = 16;
-        width = 16;
-        mines = 40;
-    } else if (settings === "hard") {
-        height = 16;
-        width = 30;
-        mines = 99;
-    } else if (settings === "custom") {
-        height = get height from input
-        width = get width from input
-        mines = get mines from input
+    switch (difficulty) {
+        case "easy":
+            height = 9;
+            width = 9;
+            mines = 10;
+            break;
+        case "medium":
+            height = 16;
+            width = 16;
+            mines = 40;
+            break;
+        case "hard":
+            height = 16;
+            width = 30;
+            mines = 99;
+            break;
+        case "custom":
+            height = document.getElementById("height-input").value;
+            width = document.getElementById("width-input").value;
+            mines = document.getElementById("mines-input").value;
+            break;
     }
     startReStart();
 }
-}
-*/
-
-document.querySelector(".game-board").addEventListener("click", function(e) {
-    if (timer === null) {
-        timer = setInterval(clockUpdater, 10);
-    }
-
-    if (e.target.className === "game-board"){
-        return;
-    }else if (tilesArray[parseInt(e.target.id.slice(2))].visible === "visible"){
-        return;
-    } else {
-        tilesArray[parseInt(e.target.id.slice(2))].reveal();
-    }
-
-    checkForWin();
-    if (winLose !== null) {
-        clearInterval(timer)
-        timer = null;
-    }
-    render();
-})
-
-function render() {
-    var mineCounter = document.querySelector(".mine-counter");
-    if (mines < 10) {
-        mineCounter.innerText = `00${mines}`;
-    } else if (mines < 100) {
-        mineCounter.innerText = `0${mines}`;
-    } else if (mines > 999) {
-        mineCounter.innerText = `999+`;
-    }else {
-        mineCounter.innerText = mines;
-    }
-    
-    var winLoseDisplay = document.querySelector(".win-lose");
-    if (winLose === "lose") {
-        winLoseDisplay.innerText = "You lost!";
-    } else if (winLose === "win") {
-        winLoseDisplay.innerText = "You won!";
-    } else {
-        winLoseDisplay.innerText = "";
-    }
-
-    for (i = 0; i < tilesArray.length; i++) {
-        var thisTile = document.getElementById(`id${i}`);
-        if (tilesArray[i].visible === "hidden") {
-            thisTile.style.background = "url('images/tile.png') no-repeat left top";
-            thisTile.style.backgroundSize = "contain";
-        } else {
-            thisTile.style.background ="";
-            if (tilesArray[i].contains === "mine"){
-                thisTile.style.background = "url('images/mine.png') no-repeat left top";
-                thisTile.style.backgroundSize = "contain";
-            } else if (tilesArray[i].contains === 0) {
-                thisTile.style.padding = "2px 0 0 5px";
-            } else {
-                thisTile.innerHTML = tilesArray[i].contains;
-                thisTile.style.padding = "2px 0 0 5px";
-            }
-            if (tilesArray[i].contains === 1) {
-                thisTile.style.color = "rgb(6, 27, 236)";
-            } else if (tilesArray[i].contains === 2) {
-                thisTile.style.color = "rgb(3, 127, 0)";
-            } else if (tilesArray[i].contains === 3) {
-                thisTile.style.color = "rgb(255, 0, 0)";
-            } else if (tilesArray[i].contains === 4) {
-                thisTile.style.color = "rgb(234, 176, 0)";
-            } else if (tilesArray[i].contains === 5) {
-                thisTile.style.color = "rgb(181, 60, 251)";
-            } else if (tilesArray[i].contains === 6) {
-                thisTile.style.color = "rgb(255, 0, 186)";
-            } else if (tilesArray[i].contains === 7) {
-                thisTile.style.color = "rgb(0, 0, 0)";
-            } else if (tilesArray[i].contains === 8) {
-                thisTile.style.color = "rgb(255, 255, 255)";
-            }
-        }
-    }
-}
-
-function startReStart() {
-    tileMaker();
-    minePlacer();
-    boardMaker();
-    render();
-}
-startReStart();
 
 function checkForWin() {
     var validVisibleCount = 0;
@@ -286,19 +230,84 @@ function checkForWin() {
     }
 }
 
-    var timer = null;
-    var count = 0;
-    function clockUpdater() {
-        count += 1;
-        var hours = Math.floor(count / 360000);
-        var minutes = Math.floor(count % 360000 / 6000);
-        var seconds = Math.floor(count % 6000 / 100);
-        var hundredths = Math.floor(count % 60);
-        if (hours < 10) hours = "0" + hours;
-        if (minutes < 10) minutes = "0" + minutes;
-        if (seconds < 10) seconds = "0" + seconds;
-        if (hundredths < 10) hundredths = "0" + hundredths
-        var toDisplay = `${hours}:${minutes}:${seconds}`;
-        var exactTime = `${hours}:${minutes}:${seconds}:${hundredths}`;
-        document.querySelector(".timer").innerHTML = toDisplay;
+function timer(onOff) {
+    switch (onOff) {
+        case "set":
+            time = 0;
+            timer("off");
+            clockUpdater();
+            break;
+        case "on":
+            if(!clock) clock = setInterval(clockUpdater, 10);
+            break;
+        case "off":
+            if(clock) clearInterval(clock);
+            clock = null;
+            break;
     }
+}
+
+//Render functions:
+function clockUpdater() {
+    time++;
+    var hours = padStart(Math.floor(time / 360000));
+    var minutes = padStart(Math.floor(time % 360000 / 6000));
+    var seconds = padStart(Math.floor(time % 6000 / 100));
+    var hundredths = padStart(Math.floor(time % 60));
+
+    function padStart(toPad) {
+        var result = null;
+        toPad < 10 ? result = "0" + toPad : result = toPad;
+        return result;
+    }
+    var clockTime = `${hours}:${minutes}:${seconds}`;
+    document.querySelector(".timer").innerHTML = clockTime;
+}
+
+function render() {
+    document.querySelector(".mine-counter").innerText = mines;
+
+    var difficultyArray = ["easy", "medium", "hard", "custom"]
+    for (i = 0; i < difficultyArray.length; i++) {
+        if (difficulty === difficultyArray[i]) {
+            document.getElementById(difficultyArray[i]).checked = true;
+        } else {
+            document.getElementById(difficultyArray[i]).checked = false;
+        }
+    }
+    
+    var winLoseText = document.querySelector(".win-lose").innerText;
+    switch(winLose) {
+        case "lose":
+            winLoseText = "You lost!";
+            break;
+        case "win":
+            winLoseText = "You won!";
+            break;
+        default:
+            winLoseText = "";
+    }
+
+    for (i = 0; i < tilesArray.length; i++) {
+        var thisTile = document.getElementById(`id${i}`);
+        
+        if (tilesArray[i].visible === "hidden") {
+            thisTile.style.background = "url('images/tile.png') no-repeat left top";
+            thisTile.style.backgroundSize = "contain";
+        } else {
+            thisTile.style.background ="";
+            if (tilesArray[i].contains === "mine"){
+                thisTile.style.background = "url('images/mine.png') no-repeat left top";
+                thisTile.style.backgroundSize = "contain";
+            } else if (tilesArray[i].contains === 0) {
+                thisTile.style.padding = "2px 0 0 5px";
+            } else {
+                thisTile.innerHTML = tilesArray[i].contains;
+                thisTile.style.padding = "2px 0 0 5px";
+
+                var colorsArray = ["rgb(6, 27, 236)", "rgb(3, 127, 0)", "rgb(255, 0, 0)", "rgb(234, 176, 0)", "rgb(181, 60, 251)", "rgb(255, 0, 186)", "rgb(0, 0, 0)", "rgb(255, 255, 255)"];
+                thisTile.style.color = colorsArray[tilesArray[i].contains - 1];
+            }
+        }
+    }
+}
