@@ -12,40 +12,48 @@
     <main>
         <h1 class="win-lose"></h1>
         <div class="game-dropdown-content">
-            <div class="easy">
+            <div id="easydiv"class="easy">
                 <input class="easy" id="easy" type="radio" checked="checked" value="easy">
-                <h1 class="easy">Easy</h1>
+                <h3 class="easy">Easy</h3>
                 <div class="easy" id="easy-submenu">
-                    <p class="easy">height: <u class="easy">9</u><br>
-                    width: <u class="easy">9</u><br>
-                    mines: <u class="easy">10</u></p>
+                    <table class = "easy">
+                        <tr><th>height:</th><td>9</td></tr>
+                        <tr><th>width:</th><td>9</td></tr>
+                        <tr><th>mines:</th><td>10</td></tr>
+                    </table>
                 </div>
             </div>
-            <div class="medium">
+            <div id="mediumdiv" class="medium">
                 <input class="medium" id="medium" type="radio" value="medium">
-                <h1 class="medium">Medium</h1>
+                <h3 class="medium">Medium</h3>
                 <div class="medium" id="medium-submenu">
-                    <p class="medium">height: <u class="medium">16</u><br>
-                    width: <u class="medium">16</u><br>
-                    mines: <u class="medium">40</u></p>
+                    <table class = "easy">
+                            <tr><th>height:</th><td>16</td></tr>
+                            <tr><th>width:</th><td>16</td></tr>
+                            <tr><th>mines:</th><td>40</td></tr>
+                    </table>
                 </div>
             </div>
-            <div class="hard">
+            <div id="harddiv" class="hard">
                 <input class="hard" id="hard" type="radio" value="hard">
-                <h1 class="hard">Hard</h1>
+                <h3 class="hard">Hard</h3>
                 <div class="hard" id="hard-submenu">
-                    <p class="hard">height: <u class="hard">16</u><br>
-                    width: <u class="hard">30</u><br>
-                    mines: <u class="hard">99</u></p>
+                    <table class = "easy">
+                            <tr><th>height:</th><td>16</td></tr>
+                            <tr><th>width:</th><td>30</td></tr>
+                            <tr><th>mines:</th><td>99</td></tr>
+                    </table>
                 </div>
             </div>
-            <div class="custom">
+            <div id="customdiv" class="custom">
                 <input class="custom" id="custom" type="radio" value="custom">
-                <h1 class="custom">Custom</h1>
+                <h3 class="custom">Custom</h3>
                 <div class="custom" id = "custom-submenu">
-                    <label for="height-input" class="custom">height:</label><input class="custom" id="height-input" placeholder ="height"><br>
-                    <label for="width-input" class="custom">width:</label><input class="custom" id="width-input" placeholder="width"><br>
-                    <label for="mines-input" class="custom">mines:</label><input class="custom" id="mines-input" placeholder="mines">
+                    <table>
+                    <tr><th>height:</th><td><input class="custom" id="height-input" placeholder ="height"></td></tr>
+                    <tr><th>width:</th><td><input class="custom" id="width-input" placeholder="width"></td></tr>
+                    <tr><th>mines:</th><td><input class="custom" id="mines-input" placeholder="mines"></td></tr>
+                    </table>
                 </div>
             </div>
             <div class="selector"><button class="new-game">New Game</button></div>

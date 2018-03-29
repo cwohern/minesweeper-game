@@ -18,15 +18,17 @@ h2 {
     font: bold 17px "courier";
 }
 table {
-    text-align: left;
+    font: 10px "lucida grande";
+    display: inline-block;
     vertical-align: baseline;
-    font: bold 10px "lucida grande";
-    width: 100%;
-    margin: 5px 5px 0 5px;
+    margin: 0 0 0 30px;
+    padding: 15px 0 0 0;
+
 }
 input {
-    width: 30px;
-    height: 10px;
+    margin: 0 0 0 20px;
+    width: 65px;
+    height: 12px;
     font: bold 10px "lucida grande";
 }
 th {
@@ -40,6 +42,25 @@ button{
 }
 button:hover {
     background: rgb(171, 171, 245); 
+}
+label {
+    display: inline;
+    text-align: left;
+    font: 11px "lucida grande";
+    margin: 0 0 0 30px;
+    line-height: 1.75em;
+}
+u {
+    text-decoration: none;
+}
+h3 {
+    font: 12px "lucida grande";
+    display: inline;
+    margin: 10px 0 0 -25px;
+}
+td {
+    width: 50px;
+    text-align: right;
 }
 .minesweeper {
     margin: 10px;
@@ -76,12 +97,23 @@ button:hover {
     border-left: 1px solid black;
     border-bottom: 1px solid black;
 }
-.game-dropdown {
+.game-dropdown-content {
+    background: rgb(218, 220, 217);
     display: flex;
     flex-wrap: wrap;
-    background: lightgray;
-    width: 250px;
+    flex-direction: column;
+    width: 160px;
     margin: 10px;
     border: 1px solid black;
     cursor: pointer;
+}
+.game-dropdown-content h1 {
+    font: 10px;
+}
+
+#easydiv, #mediumdiv, #harddiv, #customdiv{
+    border-bottom: 1px solid black;
+}
+#easy-submenu, #medium-submenu, #hard-submenu, #custom-submenu {
+    background: white;
 }
