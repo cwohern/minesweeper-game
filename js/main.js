@@ -159,9 +159,10 @@ gameBoard.addEventListener("click", e => {
 })
 
 document.querySelector(".game-dropdown-content").addEventListener("click", e => {
-    if (e.target.className === "new-game") {
-        newGame(); 
-    } else {
+    var target = e.target.className;
+    if (target === "new-game") {
+        newGame();
+    } else if (target === "easy" || target === "medium" || target === "hard" || target === "custom") {
         difficulty = e.target.className;
         render();
     }
