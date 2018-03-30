@@ -1,3 +1,7 @@
+main {
+    display: flex;
+    flex-direction: row;
+}
 img {
     width: 30px;
     height: 30px;
@@ -62,6 +66,9 @@ td {
     width: 50px;
     text-align: right;
 }
+.win-lose:hover {
+    background: white;
+}
 .minesweeper {
     margin: 10px;
     cursor: pointer;
@@ -98,6 +105,9 @@ td {
     border-bottom: 1px solid black;
 }
 .game-dropdown-content {
+    position:absolute;
+    top: 0px;
+    right: 0px;
     background: rgb(218, 220, 217);
     display: flex;
     flex-wrap: wrap;
@@ -108,6 +118,7 @@ td {
     cursor: pointer;
 }
 .game-dropdown-content h1 {
+    height: 100px;
     font: 10px;
 }
 

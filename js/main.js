@@ -8,6 +8,7 @@ var time = 0;
 var clock = null;
 
 var gameBoard = document.querySelector(".game-board");
+var gameDropdn = document.querySelector(".game-dropdown-content");
 
 //Functions and event listeners:
 class Tile {
@@ -159,7 +160,7 @@ gameBoard.addEventListener("click", e => {
     render();
 })
 
-document.querySelector(".game-dropdown-content").addEventListener("click", e => {
+gameDropdn.addEventListener("click", e => {
     var target = e.target.className;
     if (target === "new-game") {
         newGame();
@@ -260,16 +261,16 @@ function render() {
         }
     }
     
-    var winLoseText = document.querySelector(".win-lose").innerText;
+    var winLoseText = document.querySelector(".win-lose");
     switch(winLose) {
         case "lose":
-            winLoseText = "You lost!";
+            winLoseText.innerText = "You lost!";
             break;
         case "win":
-            winLoseText = "You won!";
+            winLoseText.innerText = "You won!";
             break;
         default:
-            winLoseText = "";
+            winLoseText.innerText = "";
     }
 
     for (i = 0; i < tilesArray.length; i++) {

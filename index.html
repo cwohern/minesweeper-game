@@ -10,59 +10,56 @@
 </head>
 <body>
     <main>
-        <h1 class="win-lose"></h1>
-        <div class="game-dropdown-content">
-            <div id="easydiv"class="easy">
-                <input class="easy" id="easy" type="radio" checked="checked" value="easy">
-                <h3 class="easy">Easy</h3>
-                <div class="easy" id="easy-submenu">
-                    <table class = "easy">
-                        <tr><th>height:</th><td>9</td></tr>
-                        <tr><th>width:</th><td>9</td></tr>
-                        <tr><th>mines:</th><td>10</td></tr>
-                    </table>
-                </div>
-            </div>
-            <div id="mediumdiv" class="medium">
-                <input class="medium" id="medium" type="radio" value="medium">
-                <h3 class="medium">Medium</h3>
-                <div class="medium" id="medium-submenu">
-                    <table class = "easy">
-                            <tr><th>height:</th><td>16</td></tr>
-                            <tr><th>width:</th><td>16</td></tr>
-                            <tr><th>mines:</th><td>40</td></tr>
-                    </table>
-                </div>
-            </div>
-            <div id="harddiv" class="hard">
-                <input class="hard" id="hard" type="radio" value="hard">
-                <h3 class="hard">Hard</h3>
-                <div class="hard" id="hard-submenu">
-                    <table class = "easy">
-                            <tr><th>height:</th><td>16</td></tr>
-                            <tr><th>width:</th><td>30</td></tr>
-                            <tr><th>mines:</th><td>99</td></tr>
-                    </table>
-                </div>
-            </div>
-            <div id="customdiv" class="custom">
-                <input class="custom" id="custom" type="radio" value="custom">
-                <h3 class="custom">Custom</h3>
-                <div class="custom" id = "custom-submenu">
-                    <table>
-                    <tr><th>height:</th><td><input class="custom" id="height-input" placeholder ="height"></td></tr>
-                    <tr><th>width:</th><td><input class="custom" id="width-input" placeholder="width"></td></tr>
-                    <tr><th>mines:</th><td><input class="custom" id="mines-input" placeholder="mines"></td></tr>
-                    </table>
-                </div>
-            </div>
-            <div class="selector"><button class="new-game">New Game</button></div>
-        </div>
         <div class="minesweeper">
             <div class="menu">
-                <h1 class="menu-button">Game</h1>
-                <h1 class="menu-button">Settings</h1>
-                <h1 class="menu-button">Help</h1>
+                <h1 class="menu-button">New Game</h1>
+            </div>
+            <div class="game-dropdown-content">
+                <div id="easydiv"class="easy">
+                    <input class="easy" id="easy" type="radio" checked="checked" value="easy">
+                    <h3 class="easy">Easy</h3>
+                    <div class="easy" id="easy-submenu">
+                        <table class = "easy">
+                            <tr><th>height:</th><td>9</td></tr>
+                            <tr><th>width:</th><td>9</td></tr>
+                            <tr><th>mines:</th><td>10</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="mediumdiv" class="medium">
+                    <input class="medium" id="medium" type="radio" value="medium">
+                    <h3 class="medium">Medium</h3>
+                    <div class="medium" id="medium-submenu">
+                        <table class = "easy">
+                                <tr><th>height:</th><td>16</td></tr>
+                                <tr><th>width:</th><td>16</td></tr>
+                                <tr><th>mines:</th><td>40</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="harddiv" class="hard">
+                    <input class="hard" id="hard" type="radio" value="hard">
+                    <h3 class="hard">Hard</h3>
+                    <div class="hard" id="hard-submenu">
+                        <table class = "easy">
+                                <tr><th>height:</th><td>16</td></tr>
+                                <tr><th>width:</th><td>30</td></tr>
+                                <tr><th>mines:</th><td>99</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="customdiv" class="custom">
+                    <input class="custom" id="custom" type="radio" value="custom">
+                    <h3 class="custom">Custom</h3>
+                    <div class="custom" id = "custom-submenu">
+                        <table>
+                        <tr><th>height:</th><td><input class="custom" id="height-input" placeholder ="height"></td></tr>
+                        <tr><th>width:</th><td><input class="custom" id="width-input" placeholder="width"></td></tr>
+                        <tr><th>mines:</th><td><input class="custom" id="mines-input" placeholder="mines"></td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="selector"><button class="new-game">New Game</button></div>
             </div>
             <div class="game-header">
                 <h2 class="mine-counter"></h2>
@@ -71,7 +68,8 @@
             </div>
             <div class="game-board">
             </div>
-        </div>    
+        </div>
+        <h1 class="win-lose"></h1>
     </main>
 </body>
 <script async defer src="js/main.js"></script>
