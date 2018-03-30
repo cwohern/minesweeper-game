@@ -1,3 +1,3 @@
 #Minesweeper
 
-![minesweeper screenshot](https://imgur.com/a/23d3Y)
+![minesweeper screenshot](https://i.imgur.com/TjJ5Qoa.jpg)
